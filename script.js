@@ -113,7 +113,7 @@ surpriseButton.addEventListener('click', () => {
             surpriseButton.style.display = 'none'; 
             initialMessage.style.display = 'none'; 
             
-            // 💖 UPDATED: Animated "I Like You!" 💖
+            // Proposal message structure
             finalMessage.innerHTML = `
                 <span style="font-size: 0.9em; display: block; margin-bottom: 20px; font-style: italic;">
                     I knew the moment I saw you: you are my only FOREVER.
@@ -172,8 +172,8 @@ const celebrateInPlace = () => {
         
         coupleNameBox.style.display = 'block';
         
-        // Show only "Minahil Sahiba" in H2 for the final page
-        heading.innerHTML = "Minahil Sahiba";
+        // 💖 FIXED: Show "Aamir & Minahil Sahiba" on the final page (split for fit) 💖
+        heading.innerHTML = "Aamir & <br> Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
 
