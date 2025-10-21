@@ -46,6 +46,10 @@ body {
     animation: fadeIn 3s ease-out;
     max-width: 90%;
     
+    /* 💖 LOVELY EFFECT: Subtle 3D Tilt */
+    transform: perspective(1000px) rotateX(5deg);
+    transition: transform 0.5s ease-out, box-shadow 1s ease;
+    
     /* 3D GLOSSY EFFECT FIX */
     background: 
         radial-gradient(circle at center, rgba(165, 42, 42, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%), 
@@ -120,6 +124,11 @@ p {
     animation: textGlow 1.5s infinite alternate, scaleText 2s infinite alternate;
 }
 
+/* 💖 LOVELY EFFECT: Animation for the Congrats P tag */
+#final-congrats {
+    animation: shimmer 5s infinite;
+}
+
 /* Added animation to make H2 look lovely and dynamic */
 @keyframes scaleText {
     0% { transform: scale(1); }
@@ -148,30 +157,41 @@ p {
     100% { text-shadow: 0 0 20px var(--highlight-red), 0 0 5px #fff; }
 }
 
-/* --- Mobile / Small Screen Responsiveness Fix (Final Alignment) --- */
+/* 💖 NEW KEYFRAME: Shimmer effect for congratulations text */
+@keyframes shimmer {
+    0% { opacity: 0.95; }
+    50% { opacity: 1; }
+    100% { opacity: 0.95; }
+}
+
+/* --- Mobile / Small Screen Responsiveness Fix (Final Alignment & Background Fix) --- */
 @media (max-width: 768px) {
     .love-message {
-        padding: 30px 20px;
-        max-width: 95%;
+        /* Fix for Background: Max width kam ki taaki background zyada dikhe */
+        padding: 30px 15px; /* Padding kam ki */
+        max-width: 80%; /* Width kam ki */
+        /* Remove 3D tilt on very small screens to save space */
+        transform: none; 
     }
     
     /* Couple Name Box Spacing */
     #couple-name-box {
-        margin-bottom: 25px; /* Separate the name from the main message area */
+        margin-bottom: 25px; /* Separation from the main message area */
     }
     
     /* H2 (Names) fix for celebration page */
     h2 {
-        font-size: 1.8em; /* Adjusted font size for two lines if needed */
-        height: auto; /* Let content dictate height */
+        font-size: 1.8em; 
+        height: auto; 
         letter-spacing: 1px;
         white-space: normal; 
+        margin-bottom: 5px; 
     }
 
     /* Celebration text spacing fix (P tag) */
     p {
         font-size: 1.2em;
-        margin-top: 20px; /* Reduced since H2 is in a separate box */
+        margin-top: 20px;
         margin-bottom: 20px;
     }
 

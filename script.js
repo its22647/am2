@@ -83,7 +83,7 @@ animate();
 const surpriseButton = document.getElementById('surprise-btn');
 const initialMessage = document.getElementById('initial-msg');
 const finalMessage = document.getElementById('final-msg');
-const heading = document.getElementById('names'); // This is now H2
+const heading = document.getElementById('names'); // This is H2
 const coupleNameBox = document.getElementById('couple-name-box'); // New Box
 const loveMessageContainer = document.querySelector('.love-message');
 const buttonContainer = document.querySelector('.button-container');
@@ -98,6 +98,10 @@ surpriseButton.addEventListener('click', () => {
     
     surpriseButton.disabled = true; 
     
+    // 💖 LOVELY EFFECT: Pulse the Message Box before transition 💖
+    loveMessageContainer.style.transition = 'transform 0.5s ease-out';
+    loveMessageContainer.style.transform = 'scale(1.05)'; // Zoom In
+    
     // 1. Initial content fade out
     surpriseButton.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     initialMessage.style.transition = 'opacity 0.5s ease';
@@ -106,39 +110,43 @@ surpriseButton.addEventListener('click', () => {
     surpriseButton.style.transform = 'translateY(20px)';
     initialMessage.style.opacity = '0';
 
-    // 2. Reveal the Proposal Text and Choices
+    // Reset zoom after a moment
     setTimeout(() => {
-        surpriseButton.style.display = 'none'; 
-        initialMessage.style.display = 'none'; 
-
-        // Final Message setup (Text update)
-        // --- PROPOSAL READABILITY FIX APPLIED HERE ---
-        finalMessage.innerHTML = `
-            <span style="font-size: 0.9em; display: block; margin-bottom: 10px;">
-                I knew the moment I saw you: you are my only FOREVER.
-            </span>
-            <span style="font-size: 1.1em; font-weight: bold;">
-                Minahil Sahiba I Like You! 
-            </span>
-            <br>
-            Can we be us, forever? ❤️💍
-        `;
-        finalMessage.style.fontSize = '2.5em'; 
-        finalMessage.style.color = '#ff0000'; 
+        loveMessageContainer.style.transform = 'scale(1)'; // Zoom Out (return to normal)
         
-        // Final Message reveal
-        finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
-        finalMessage.style.opacity = '1';
-
-        // Button container show
-        buttonContainer.style.display = 'flex';
-        buttonContainer.style.opacity = '0';
+        // 2. Reveal the Proposal Text and Choices
         setTimeout(() => {
-             buttonContainer.style.transition = 'opacity 1s ease';
-             buttonContainer.style.opacity = '1';
-        }, 800);
-        
-    }, 500);
+            surpriseButton.style.display = 'none'; 
+            initialMessage.style.display = 'none'; 
+
+            // Final Message setup (Text update)
+            finalMessage.innerHTML = `
+                <span style="font-size: 0.9em; display: block; margin-bottom: 10px;">
+                    I knew the moment I saw you: you are my only FOREVER.
+                </span>
+                <span style="font-size: 1.1em; font-weight: bold;">
+                    Minahil Sahiba I Like You! 
+                </span>
+                <br>
+                Can we be us, forever? ❤️💍
+            `;
+            finalMessage.style.fontSize = '2.5em'; 
+            finalMessage.style.color = '#ff0000'; 
+            
+            // Final Message reveal
+            finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
+            finalMessage.style.opacity = '1';
+
+            // Button container show
+            buttonContainer.style.display = 'flex';
+            buttonContainer.style.opacity = '0';
+            setTimeout(() => {
+                buttonContainer.style.transition = 'opacity 1s ease';
+                buttonContainer.style.opacity = '1';
+            }, 800);
+            
+        }, 500); // Wait for fade out to complete
+    }, 250); // Short delay for heartbeat effect
 });
 
 // --- STEP 2: Celebrate on the Same Screen (After Yes/Funny Click) ---
@@ -185,10 +193,7 @@ const celebrateInPlace = () => {
         finalCongrats.style.marginTop = '20px';
         finalCongrats.style.color = 'white';
         finalCongrats.style.opacity = '0';
-        // Check and remove old p tag (if any), then append new one
-        if (loveMessageContainer.querySelector('#final-congrats')) {
-             loveMessageContainer.removeChild(loveMessageContainer.querySelector('#final-congrats'));
-        }
+        // Add ID for CSS Shimmer animation
         finalCongrats.id = 'final-congrats';
         loveMessageContainer.appendChild(finalCongrats);
         
