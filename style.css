@@ -15,7 +15,6 @@ html, body {
 body {
     margin: 0;
     padding: 0;
-    /* --- ELEGANT FONT FIX (Playfair Display) --- */
     font-family: 'Playfair Display', 'Georgia', serif; 
     
     background-color: var(--bg-color);
@@ -42,15 +41,26 @@ body {
     z-index: 10;
     text-align: center;
     padding: 40px 60px;
-    background: rgba(26, 26, 26, 0.85);
     border-radius: 15px;
     box-shadow: 0 0 30px rgba(128, 0, 0, 0.7);
     animation: fadeIn 3s ease-out;
     max-width: 90%;
+    
+    /* 3D GLOSSY EFFECT FIX */
+    background: 
+        radial-gradient(circle at center, rgba(165, 42, 42, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%), 
+        rgba(26, 26, 26, 0.9);
+    border: 1px solid rgba(165, 42, 42, 0.5); 
+    
+    /* New container for names */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Aamir & Minahil Sahiba - Alignment Fix: Jagaah gherega, dikhega nahi shuru mein */
-h1 {
+/* Couple Name (Now H2) - Global Styles */
+h2 {
     font-size: 5em; 
     color: var(--primary-color);
     text-shadow: 0 0 10px var(--secondary-color);
@@ -59,20 +69,18 @@ h1 {
     margin-bottom: 0.2em;
     white-space: nowrap; 
     transition: all 1s ease-out;
-
     /* ALIGNMENT FIX */
     visibility: hidden; 
     height: 1.2em; 
 }
 
+/* Initial Paragraph & Proposal Text */
 p {
     font-size: 1.5em;
     font-style: italic;
     color: var(--text-color);
-    /* MARGIN ADJUSTMENT */
     margin-top: 5px; 
     margin-bottom: 5px;
-    /* MARGIN ADJUSTMENT */
     line-height: 1.5;
     transition: opacity 1s ease;
 }
@@ -106,15 +114,21 @@ p {
 
 /* --- Final Celebration Styles --- */
 .celebration-text {
+    /* LOVELY ANIMATION FOR NAMES */
     color: var(--highlight-red);
     text-shadow: 0 0 10px var(--text-color);
-    animation: textGlow 1.5s infinite alternate;
+    animation: textGlow 1.5s infinite alternate, scaleText 2s infinite alternate;
+}
+
+/* Added animation to make H2 look lovely and dynamic */
+@keyframes scaleText {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
 }
 
 .heart-emoji {
     font-size: 1.2em;
     display: inline-block;
-    animation: heartbeat 0.8s infinite;
 }
 
 /* --- Keyframes --- */
@@ -134,29 +148,31 @@ p {
     100% { text-shadow: 0 0 20px var(--highlight-red), 0 0 5px #fff; }
 }
 
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-
-/* --- Mobile / Small Screen Responsiveness Fix --- */
+/* --- Mobile / Small Screen Responsiveness Fix (Final Alignment) --- */
 @media (max-width: 768px) {
     .love-message {
         padding: 30px 20px;
         max-width: 95%;
     }
     
-    /* H1 (Names) fix for celebration page - Ab poora naam fit hoga */
-    h1 {
-        font-size: 2.5em; 
-        height: 1.2em;
+    /* Couple Name Box Spacing */
+    #couple-name-box {
+        margin-bottom: 25px; /* Separate the name from the main message area */
+    }
+    
+    /* H2 (Names) fix for celebration page */
+    h2 {
+        font-size: 1.8em; /* Adjusted font size for two lines if needed */
+        height: auto; /* Let content dictate height */
         letter-spacing: 1px;
         white-space: normal; 
     }
 
+    /* Celebration text spacing fix (P tag) */
     p {
         font-size: 1.2em;
+        margin-top: 20px; /* Reduced since H2 is in a separate box */
+        margin-bottom: 20px;
     }
 
     .button-container {

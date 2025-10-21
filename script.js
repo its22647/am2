@@ -83,7 +83,8 @@ animate();
 const surpriseButton = document.getElementById('surprise-btn');
 const initialMessage = document.getElementById('initial-msg');
 const finalMessage = document.getElementById('final-msg');
-const heading = document.getElementById('names');
+const heading = document.getElementById('names'); // This is now H2
+const coupleNameBox = document.getElementById('couple-name-box'); // New Box
 const loveMessageContainer = document.querySelector('.love-message');
 const buttonContainer = document.querySelector('.button-container');
 const yesButton = document.getElementById('yes-btn');
@@ -111,8 +112,17 @@ surpriseButton.addEventListener('click', () => {
         initialMessage.style.display = 'none'; 
 
         // Final Message setup (Text update)
-        // --- LINE BREAK FIX APPLIED HERE ---
-        finalMessage.innerHTML = "I knew the moment I saw you: you are my only FOREVER.<br>MinahiI Sahiba I Like You! Can we be us, forvever? ❤️💍";
+        // --- PROPOSAL READABILITY FIX APPLIED HERE ---
+        finalMessage.innerHTML = `
+            <span style="font-size: 0.9em; display: block; margin-bottom: 10px;">
+                I knew the moment I saw you: you are my only FOREVER.
+            </span>
+            <span style="font-size: 1.1em; font-weight: bold;">
+                Minahil Sahiba I Like You! 
+            </span>
+            <br>
+            Can we be us, forever? ❤️💍
+        `;
         finalMessage.style.fontSize = '2.5em'; 
         finalMessage.style.color = '#ff0000'; 
         
@@ -150,7 +160,11 @@ const celebrateInPlace = () => {
         buttonContainer.style.display = 'none';
         finalMessage.style.display = 'none'; 
         
-        // Final Celebration Heading: Names
+        // --- NEW BOX DISPLAY LOGIC ---
+        // Show the separate name box
+        coupleNameBox.style.display = 'block';
+        
+        // Final Celebration Heading: Names (H2)
         heading.textContent = "Aamir & Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
@@ -159,7 +173,7 @@ const celebrateInPlace = () => {
         heading.style.visibility = 'visible'; 
         heading.style.opacity = '1'; 
         
-        heading.classList.add('celebration-text'); // Apply glow animation
+        heading.classList.add('celebration-text'); // Apply glow and scale animation
 
         // New celebratory message
         const finalCongrats = document.createElement('p');
