@@ -5,7 +5,7 @@ const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('love-scene').appendChild(renderer.domElement);
 
-// Screen resize handler (Zaroori for screen fix)
+// Screen resize handler 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -17,7 +17,7 @@ const spotLight = new THREE.SpotLight(0xffffff, 50, 100, Math.PI / 4, 0.5, 2);
 spotLight.position.set(0, 0, 10);
 scene.add(spotLight);
 
-// Creating the "Pulsating Heart Energy" (Maroon particles)
+// Creating the "Pulsating Heart Energy" 
 const particleCount = 2000;
 const radius = 5;
 const geometry = new THREE.BufferGeometry();
@@ -57,16 +57,20 @@ camera.position.z = 8;
 let scaleFactor = 1.0; 
 let scaleDirection = 0.0015;
 
+// Animation variables for dynamic change
+let rotationSpeed = 0.001; 
+let pulseMagnitude = 0.05; 
+
 // Animation Loop: Smooth Heartbeat Motion
 function animate() {
     requestAnimationFrame(animate);
 
-    loveOrb.rotation.x += 0.0005;
-    loveOrb.rotation.y += 0.001;
+    loveOrb.rotation.x += rotationSpeed / 2;
+    loveOrb.rotation.y += rotationSpeed;
 
     // Heart-like pulsating effect
     scaleFactor += scaleDirection;
-    if (scaleFactor > 1.05 || scaleFactor < 0.95) {
+    if (scaleFactor > 1 + pulseMagnitude || scaleFactor < 1 - pulseMagnitude) {
         scaleDirection = -scaleDirection; 
     }
     loveOrb.scale.set(scaleFactor, scaleFactor, scaleFactor);
@@ -80,12 +84,16 @@ const surpriseButton = document.getElementById('surprise-btn');
 const initialMessage = document.getElementById('initial-msg');
 const finalMessage = document.getElementById('final-msg');
 const heading = document.getElementById('names');
+const loveMessageContainer = document.querySelector('.love-message');
 const buttonContainer = document.querySelector('.button-container');
 const yesButton = document.getElementById('yes-btn');
 const funnyButton = document.getElementById('funny-btn');
 
-// --- STEP 1: Reveal Proposal Message (After Initial Click) ---
+// --- STEP 1: Reveal Proposal Message (Initial Click) ---
 surpriseButton.addEventListener('click', () => {
+    
+    // Disable button to prevent double clicks
+    surpriseButton.disabled = true; 
     
     // 1. Initial content fade out
     surpriseButton.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -100,16 +108,22 @@ surpriseButton.addEventListener('click', () => {
         surpriseButton.style.display = 'none'; 
         initialMessage.style.display = 'none'; 
 
-        // Final Message setup
-        finalMessage.textContent = "Minahil Sahiba, I knew the moment I saw you: you are my only *forever*. Will you take this step with me? ❤️💍";
-        finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
-        finalMessage.style.opacity = '1';
+        // Final Message setup (Text update)
+        finalMessage.textContent = "Minahil Sahiba, I knew the moment I saw you: you are my only FOREVER. Will you take this step with me? ❤️💍";
         finalMessage.style.fontSize = '2.5em'; 
         finalMessage.style.color = '#ff0000'; 
         
+        // Final Message reveal (Opacity transition)
+        finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
+        finalMessage.style.opacity = '1';
+
         // Button container show
         buttonContainer.style.display = 'flex';
-        buttonContainer.style.animation = 'fadeIn 1s ease-out';
+        buttonContainer.style.opacity = '0';
+        setTimeout(() => {
+             buttonContainer.style.transition = 'opacity 1s ease';
+             buttonContainer.style.opacity = '1';
+        }, 800);
         
     }, 500);
 });
@@ -117,33 +131,40 @@ surpriseButton.addEventListener('click', () => {
 // --- STEP 2: Celebrate on the Same Screen (After Yes/Funny Click) ---
 const celebrateInPlace = () => {
     
-    // Buttons ko disable
+    // 1. Disable buttons and fade out proposal content
     yesButton.disabled = true;
     funnyButton.disabled = true;
-    
-    // Smooth transition
     finalMessage.style.opacity = '0';
     buttonContainer.style.opacity = '0';
-
+    
+    // Increase 3D animation for celebration!
+    rotationSpeed = 0.005; // 5x faster
+    pulseMagnitude = 0.15; // 3x bigger pulse
+    material.size = 0.1; // Bigger particles
+    
     setTimeout(() => {
-        // Content ko change aur center karo
+        // Hide elements
         buttonContainer.style.display = 'none';
         finalMessage.style.display = 'none'; 
         
-        // Final Celebration Message
-        heading.textContent = "Aamir & Minahil Sahiba!";
-        heading.style.fontSize = '6em'; 
+        // Final Celebration Heading: Names
+        heading.textContent = "Aamir & Minahil Sahiba";
+        heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
         heading.style.opacity = '1'; // Show the names
+        heading.classList.add('celebration-text'); // Apply glow animation
 
         // New celebratory message
         const finalCongrats = document.createElement('p');
-        finalCongrats.innerHTML = "Aapka naya safar mubarak ho! Forever starts now. 🥂💍";
-        finalCongrats.style.fontSize = '2em';
+        finalCongrats.innerHTML = `
+            <span class="heart-emoji">💖</span> Absolutely loved this moment. Congrats, sweetheart! 
+            <br> Forever starts now. <span class="heart-emoji">🥂💍</span>
+        `;
+        finalCongrats.style.fontSize = '2.5em';
         finalCongrats.style.marginTop = '20px';
-        finalCongrats.style.color = '#fff';
+        finalCongrats.style.color = 'white';
         finalCongrats.style.opacity = '0';
-        document.querySelector('.love-message').appendChild(finalCongrats);
+        loveMessageContainer.appendChild(finalCongrats);
         
         // Smoothly fade in congrats message
         setTimeout(() => {
