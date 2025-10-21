@@ -1,0 +1,147 @@
+:root {
+    /* Deep, Classy Love Colors (Original Professional Scheme) */
+    --primary-color: #800000; /* Deep Maroon */
+    --secondary-color: #A52A2A; /* Brownish Red */
+    --text-color: #f0f0f0; /* Light text for dark background */
+    --bg-color: #1a1a1a; /* Very Dark Grey/Black for contrast */
+}
+
+/* --- Screen Fix and Mobile Optimization (Perfect Alignment) --- */
+html, body {
+    height: 100%; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif; 
+    background-color: var(--bg-color);
+    overflow: hidden; /* Scrolling disable - screen fix */
+    color: var(--text-color);
+    display: flex; /* Message ko center karne ke liye */
+    justify-content: center;
+    align-items: center;
+}
+
+#love-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    box-shadow: inset 0 0 100px rgba(128, 0, 0, 0.5); 
+}
+
+/* Central message box - Clean and Classy */
+.love-message {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 40px 60px;
+    background: rgba(26, 26, 26, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(128, 0, 0, 0.7);
+    animation: fadeIn 3s ease-out;
+    max-width: 90%;
+}
+
+/* Names are hidden here but defined for the celebration page */
+h1 {
+    font-size: 5em; 
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--secondary-color);
+    letter-spacing: 5px;
+    margin-bottom: 0.2em;
+    white-space: nowrap; 
+}
+
+p {
+    font-size: 1.5em;
+    font-style: italic;
+    color: var(--text-color);
+    margin-top: 0;
+    line-height: 1.5;
+    transition: opacity 1s ease; /* Fade-in for messages */
+}
+
+/* Initial Button */
+#surprise-btn {
+    padding: 15px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite; 
+}
+
+/* Final Proposal Buttons */
+.button-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.proposal-btn {
+    padding: 15px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.proposal-btn:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+
+/* --- Keyframes --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(165, 42, 42, 0.7); }
+    70% { box-shadow: 0 0 0 25px rgba(165, 42, 42, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(165, 42, 42, 0); }
+}
+
+
+/* --- Mobile / Small Screen Responsiveness Fix --- */
+@media (max-width: 768px) {
+    .love-message {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    h1 {
+        font-size: 3em; 
+        letter-spacing: 2px;
+        white-space: normal; 
+    }
+
+    p {
+        font-size: 1.2em;
+    }
+
+    .button-container {
+        flex-direction: column; /* Mobile par buttons vertically align */
+        gap: 10px;
+    }
+
+    .proposal-btn {
+        width: 100%;
+    }
+}
