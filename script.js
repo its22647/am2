@@ -89,10 +89,12 @@ const buttonContainer = document.querySelector('.button-container');
 const yesButton = document.getElementById('yes-btn');
 const funnyButton = document.getElementById('funny-btn');
 
+// Ensure heading is hidden initially (visually and functionally)
+heading.style.visibility = 'hidden'; 
+
 // --- STEP 1: Reveal Proposal Message (Initial Click) ---
 surpriseButton.addEventListener('click', () => {
     
-    // Disable button to prevent double clicks
     surpriseButton.disabled = true; 
     
     // 1. Initial content fade out
@@ -109,11 +111,12 @@ surpriseButton.addEventListener('click', () => {
         initialMessage.style.display = 'none'; 
 
         // Final Message setup (Text update)
-        finalMessage.textContent = "Minahil Sahiba, I knew the moment I saw you: you are my only FOREVER. Will you take this step with me? ❤️💍";
+        // --- LINE BREAK FIX APPLIED HERE ---
+        finalMessage.innerHTML = "I knew the moment I saw you: you are my only FOREVER.<br>MinahiI Sahiba I Like You! Can we be us, forvever? ❤️💍";
         finalMessage.style.fontSize = '2.5em'; 
         finalMessage.style.color = '#ff0000'; 
         
-        // Final Message reveal (Opacity transition)
+        // Final Message reveal
         finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
         finalMessage.style.opacity = '1';
 
@@ -151,7 +154,11 @@ const celebrateInPlace = () => {
         heading.textContent = "Aamir & Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
-        heading.style.opacity = '1'; // Show the names
+
+        // ALIGNMENT FIX REVERSE
+        heading.style.visibility = 'visible'; 
+        heading.style.opacity = '1'; 
+        
         heading.classList.add('celebration-text'); // Apply glow animation
 
         // New celebratory message
@@ -164,6 +171,11 @@ const celebrateInPlace = () => {
         finalCongrats.style.marginTop = '20px';
         finalCongrats.style.color = 'white';
         finalCongrats.style.opacity = '0';
+        // Check and remove old p tag (if any), then append new one
+        if (loveMessageContainer.querySelector('#final-congrats')) {
+             loveMessageContainer.removeChild(loveMessageContainer.querySelector('#final-congrats'));
+        }
+        finalCongrats.id = 'final-congrats';
         loveMessageContainer.appendChild(finalCongrats);
         
         // Smoothly fade in congrats message
