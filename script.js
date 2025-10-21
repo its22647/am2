@@ -1,11 +1,11 @@
-// --- Three.js 3D Deep Love Scene Setup ---
+// --- Three.js 3D Deep Love Scene Setup (UNCHANGED) ---
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById('love-scene').appendChild(renderer.domElement);
 
-// Screen resize handler 
+// Screen resize handler (UNCHANGED)
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -17,7 +17,7 @@ const spotLight = new THREE.SpotLight(0xffffff, 50, 100, Math.PI / 4, 0.5, 2);
 spotLight.position.set(0, 0, 10);
 scene.add(spotLight);
 
-// Creating the "Pulsating Heart Energy" 
+// Creating the "Pulsating Heart Energy" (UNCHANGED)
 const particleCount = 2000;
 const radius = 5;
 const geometry = new THREE.BufferGeometry();
@@ -61,14 +61,13 @@ let scaleDirection = 0.0015;
 let rotationSpeed = 0.001; 
 let pulseMagnitude = 0.05; 
 
-// Animation Loop: Smooth Heartbeat Motion
+// Animation Loop: Smooth Heartbeat Motion (UNCHANGED)
 function animate() {
     requestAnimationFrame(animate);
 
     loveOrb.rotation.x += rotationSpeed / 2;
     loveOrb.rotation.y += rotationSpeed;
 
-    // Heart-like pulsating effect
     scaleFactor += scaleDirection;
     if (scaleFactor > 1 + pulseMagnitude || scaleFactor < 1 - pulseMagnitude) {
         scaleDirection = -scaleDirection; 
@@ -79,7 +78,7 @@ function animate() {
 }
 animate();
 
-// --- JavaScript Interactivity: Proposal Logic ---
+// --- JavaScript Interactivity: Proposal Logic (UNCHANGED) ---
 const surpriseButton = document.getElementById('surprise-btn');
 const initialMessage = document.getElementById('initial-msg');
 const finalMessage = document.getElementById('final-msg');
@@ -90,19 +89,15 @@ const buttonContainer = document.querySelector('.button-container');
 const yesButton = document.getElementById('yes-btn');
 const funnyButton = document.getElementById('funny-btn');
 
-// Ensure heading is hidden initially (visually and functionally)
 heading.style.visibility = 'hidden'; 
 
-// --- STEP 1: Reveal Proposal Message (Initial Click) ---
 surpriseButton.addEventListener('click', () => {
     
     surpriseButton.disabled = true; 
     
-    // Set transition property here for the heartbeat to work smoothly
     loveMessageContainer.style.transition = 'transform 0.5s ease-out, box-shadow 1s ease'; 
-    loveMessageContainer.style.transform = 'scale(1.05) perspective(1000px) rotateX(5deg)'; // Zoom In + Maintain Tilt
+    loveMessageContainer.style.transform = 'scale(1.05) perspective(1000px) rotateX(5deg)'; 
     
-    // 1. Initial content fade out
     surpriseButton.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     initialMessage.style.transition = 'opacity 0.5s ease';
     
@@ -110,16 +105,13 @@ surpriseButton.addEventListener('click', () => {
     surpriseButton.style.transform = 'translateY(20px)';
     initialMessage.style.opacity = '0';
 
-    // Reset zoom after a moment
     setTimeout(() => {
-        loveMessageContainer.style.transform = 'scale(1) perspective(1000px) rotateX(5deg)'; // Zoom Out (return to normal)
+        loveMessageContainer.style.transform = 'scale(1) perspective(1000px) rotateX(5deg)'; 
         
-        // 2. Reveal the Proposal Text and Choices
         setTimeout(() => {
             surpriseButton.style.display = 'none'; 
             initialMessage.style.display = 'none'; 
 
-            // Final Message setup (Text update)
             finalMessage.innerHTML = `
                 <span style="font-size: 0.9em; display: block; margin-bottom: 10px;">
                     I knew the moment I saw you: you are my only FOREVER.
@@ -130,14 +122,13 @@ surpriseButton.addEventListener('click', () => {
                 <br>
                 Can we be us, forever? ❤️💍
             `;
-            finalMessage.style.fontSize = '2.5em'; 
+            // 💖 FIX: Adjusted initial proposal font size to 2em for better fit
+            finalMessage.style.fontSize = '2em'; 
             finalMessage.style.color = '#ff0000'; 
             
-            // Final Message reveal
             finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
             finalMessage.style.opacity = '1';
 
-            // Button container show
             buttonContainer.style.display = 'flex';
             buttonContainer.style.opacity = '0';
             setTimeout(() => {
@@ -145,23 +136,21 @@ surpriseButton.addEventListener('click', () => {
                 buttonContainer.style.opacity = '1';
             }, 800);
             
-        }, 500); // Wait for fade out to complete
-    }, 250); // Short delay for heartbeat effect
+        }, 500); 
+    }, 250); 
 });
 
 // --- STEP 2: Celebrate on the Same Screen (After Yes/Funny Click) ---
 const celebrateInPlace = () => {
     
-    // 1. Disable buttons and fade out proposal content
     yesButton.disabled = true;
     funnyButton.disabled = true;
     finalMessage.style.opacity = '0';
     buttonContainer.style.opacity = '0';
     
-    // 💖 ENHANCED CELEBRATION EFFECT 💖
-    rotationSpeed = 0.005; // Faster
-    pulseMagnitude = 0.15; // Bigger pulse
-    material.size = 0.1; // Bigger particles
+    rotationSpeed = 0.005; 
+    pulseMagnitude = 0.15; 
+    material.size = 0.1; 
     
     // Change particle colors to bright red (celebration glow)
     const redColor = new THREE.Color(0xff0000);
@@ -171,7 +160,7 @@ const celebrateInPlace = () => {
         colorsArray[i + 1] = redColor.g;
         colorsArray[i + 2] = redColor.b;
     }
-    geometry.attributes.color.needsUpdate = true; // Apply color change
+    geometry.attributes.color.needsUpdate = true; 
     
     
     setTimeout(() => {
@@ -180,19 +169,17 @@ const celebrateInPlace = () => {
         finalMessage.style.display = 'none'; 
         
         // --- NEW BOX DISPLAY LOGIC ---
-        // Show the separate name box
         coupleNameBox.style.display = 'block';
         
-        // Final Celebration Heading: Names (H2)
-        heading.textContent = "Aamir & Minahil Sahiba";
+        // 💖 FIX: Split Name into two lines to ensure horizontal fit 💖
+        heading.innerHTML = "Aamir & <br> Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
 
-        // ALIGNMENT FIX REVERSE
         heading.style.visibility = 'visible'; 
         heading.style.opacity = '1'; 
         
-        heading.classList.add('celebration-text'); // Apply glow and scale animation
+        heading.classList.add('celebration-text'); 
 
         // New celebratory message
         const finalCongrats = document.createElement('p');
@@ -200,15 +187,14 @@ const celebrateInPlace = () => {
             <span class="heart-emoji">💖</span> Absolutely loved this moment. Congrats, sweetheart! 
             <br> Forever starts now. <span class="heart-emoji">🥂💍</span>
         `;
-        finalCongrats.style.fontSize = '2.5em';
+        // 💖 FIX: Adjusted size to ensure it fits with the 2-line H2
+        finalCongrats.style.fontSize = '2em'; 
         finalCongrats.style.marginTop = '20px';
         finalCongrats.style.color = 'white';
         finalCongrats.style.opacity = '0';
-        // Add ID for CSS Shimmer animation
         finalCongrats.id = 'final-congrats';
         loveMessageContainer.appendChild(finalCongrats);
         
-        // Smoothly fade in congrats message
         setTimeout(() => {
             finalCongrats.style.transition = 'opacity 2s ease';
             finalCongrats.style.opacity = '1';
@@ -217,6 +203,6 @@ const celebrateInPlace = () => {
     }, 500);
 };
 
-// Event Listeners for both final answer buttons
+// Event Listeners for both final answer buttons (UNCHANGED)
 yesButton.addEventListener('click', celebrateInPlace);
 funnyButton.addEventListener('click', celebrateInPlace);
