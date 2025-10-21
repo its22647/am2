@@ -113,7 +113,7 @@ surpriseButton.addEventListener('click', () => {
             surpriseButton.style.display = 'none'; 
             initialMessage.style.display = 'none'; 
             
-            // 💖 FIX: Re-structure proposal message to highlight MINAHIL SAHIBA in the center 💖
+            // 💖 UPDATED: Animated "I Like You!" 💖
             finalMessage.innerHTML = `
                 <span style="font-size: 0.9em; display: block; margin-bottom: 20px; font-style: italic;">
                     I knew the moment I saw you: you are my only FOREVER.
@@ -121,13 +121,14 @@ surpriseButton.addEventListener('click', () => {
                 <span style="font-size: 2.5em; font-weight: 900; color: #ff3333; display: block;">
                     MINAHIL SAHIBA
                 </span>
-                <br>
+                <span class="animated-like-you" style="font-size: 1.8em; margin-top: 10px;">
+                    I Like You!
+                </span>
                 <span style="font-size: 1.5em; display: block; margin-top: 10px;">
-                    I Like You! Can we be us, forever? ❤️💍
+                    Can we be us, forever? ❤️💍
                 </span>
             `;
-            // Removed finalMessage.style.fontSize as it's set in the span now
-            finalMessage.style.color = 'white'; // Main color white, accent color in span
+            finalMessage.style.color = 'white'; 
             
             finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
             finalMessage.style.opacity = '1';
@@ -171,7 +172,7 @@ const celebrateInPlace = () => {
         
         coupleNameBox.style.display = 'block';
         
-        // 💖 FIX: Show only "Lovely Minahil Sahiba" in H2 for the final page 💖
+        // Show only "Minahil Sahiba" in H2 for the final page
         heading.innerHTML = "Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';

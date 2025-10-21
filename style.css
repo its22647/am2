@@ -25,7 +25,7 @@ body {
     display: flex; 
     justify-content: center;
     align-items: center; 
-    /* 💖 FIX: Added bottom padding to lift the box slightly from bottom edge 💖 */
+    /* FIX: Added bottom padding to lift the box slightly from bottom edge */
     padding-bottom: 20px; 
 }
 
@@ -69,7 +69,6 @@ body {
 
 /* Couple Name (Now H2) - Global Styles */
 h2 {
-    /* 💖 H2 for Final Celebration Page only (now only displays "Minahil Sahiba") 💖 */
     font-size: 4em; 
     color: var(--primary-color);
     text-shadow: 0 0 20px var(--highlight-red), 0 0 8px var(--secondary-color);
@@ -122,6 +121,16 @@ p {
     box-shadow: 0 0 30px var(--highlight-red); 
 }
 
+/* 💖 NEW: Gentle animation for "I Like You" text 💖 */
+.animated-like-you {
+    font-weight: bold;
+    color: var(--highlight-red);
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    animation: heartBeatScale 1.5s infinite alternate;
+}
+
 /* 💖 FINAL TEXT GLOW UP */
 .celebration-text {
     color: var(--highlight-red);
@@ -129,7 +138,7 @@ p {
     animation: textGlow 1.5s infinite alternate, scaleText 2s infinite alternate;
 }
 
-/* --- Cursor Heart Styles (for cursor-effect.js) (UNCHANGED) --- */
+/* --- Cursor Heart Styles (for cursor-effect.js) --- */
 .heart-cursor {
     position: fixed;
     top: 0;
@@ -143,16 +152,19 @@ p {
     z-index: 9999; 
 }
 
-/* --- Keyframes (UNCHANGED) --- */
+/* --- Keyframes --- */
 @keyframes fadeIn {
     from { opacity: 0.2; }
     to { opacity: 1; }
 }
+
+/* 💖 FIXED: Removed vertical movement (translateY) to prevent "jerk" 💖 */
 @keyframes liftUp {
-    0% { transform: perspective(1000px) rotateX(5deg) translateY(50px); opacity: 0; }
+    0% { transform: perspective(1000px) rotateX(5deg); opacity: 0; }
     50% { opacity: 1; }
-    100% { transform: perspective(1000px) rotateX(5deg) translateY(0); }
+    100% { transform: perspective(1000px) rotateX(5deg); }
 }
+
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(165, 42, 42, 0.7); }
     70% { box-shadow: 0 0 0 25px rgba(165, 42, 42, 0); }
@@ -168,13 +180,19 @@ p {
     100% { opacity: 0.95; }
 }
 
+/* 💖 NEW KEYFRAME: Subtle scale pulse for "I Like You" 💖 */
+@keyframes heartBeatScale {
+    0% { transform: scale(1); opacity: 0.9; }
+    100% { transform: scale(1.03); opacity: 1; }
+}
+
 /* --- Mobile / Small Screen Responsiveness Fix --- */
 @media (max-width: 768px) {
     body {
         cursor: default; 
     }
     .love-message {
-        /* 💖 FIX: Reduced overall padding on mobile (smaller box) 💖 */
+        /* FIX: Reduced overall padding on mobile (smaller box) */
         padding: 25px 15px; 
         max-width: 90%; 
         transform: none; 
