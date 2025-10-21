@@ -57,7 +57,7 @@ camera.position.z = 8;
 let scaleFactor = 1.0; 
 let scaleDirection = 0.0015;
 
-// Animation variables for dynamic change
+// Animation variables for dynamic change (UNCHANGED)
 let rotationSpeed = 0.001; 
 let pulseMagnitude = 0.05; 
 
@@ -78,7 +78,7 @@ function animate() {
 }
 animate();
 
-// --- JavaScript Interactivity: Proposal Logic (UNCHANGED) ---
+// --- JavaScript Interactivity: Proposal Logic (UNCHANGED VARS) ---
 const surpriseButton = document.getElementById('surprise-btn');
 const initialMessage = document.getElementById('initial-msg');
 const finalMessage = document.getElementById('final-msg');
@@ -91,6 +91,7 @@ const funnyButton = document.getElementById('funny-btn');
 
 heading.style.visibility = 'hidden'; 
 
+// --- STEP 1: Reveal Proposal Message (Initial Click) ---
 surpriseButton.addEventListener('click', () => {
     
     surpriseButton.disabled = true; 
@@ -111,20 +112,22 @@ surpriseButton.addEventListener('click', () => {
         setTimeout(() => {
             surpriseButton.style.display = 'none'; 
             initialMessage.style.display = 'none'; 
-
+            
+            // 💖 FIX: Re-structure proposal message to highlight MINAHIL SAHIBA in the center 💖
             finalMessage.innerHTML = `
-                <span style="font-size: 0.9em; display: block; margin-bottom: 10px;">
+                <span style="font-size: 0.9em; display: block; margin-bottom: 20px; font-style: italic;">
                     I knew the moment I saw you: you are my only FOREVER.
                 </span>
-                <span style="font-size: 1.1em; font-weight: bold;">
-                    Minahil Sahiba I Like You! 
+                <span style="font-size: 2.5em; font-weight: 900; color: #ff3333; display: block;">
+                    MINAHIL SAHIBA
                 </span>
                 <br>
-                Can we be us, forever? ❤️💍
+                <span style="font-size: 1.5em; display: block; margin-top: 10px;">
+                    I Like You! Can we be us, forever? ❤️💍
+                </span>
             `;
-            // 💖 FIX: Adjusted initial proposal font size to 2em for better fit
-            finalMessage.style.fontSize = '2em'; 
-            finalMessage.style.color = '#ff0000'; 
+            // Removed finalMessage.style.fontSize as it's set in the span now
+            finalMessage.style.color = 'white'; // Main color white, accent color in span
             
             finalMessage.style.transition = 'opacity 3s ease 0.5s'; 
             finalMessage.style.opacity = '1';
@@ -152,7 +155,6 @@ const celebrateInPlace = () => {
     pulseMagnitude = 0.15; 
     material.size = 0.1; 
     
-    // Change particle colors to bright red (celebration glow)
     const redColor = new THREE.Color(0xff0000);
     const colorsArray = geometry.attributes.color.array;
     for (let i = 0; i < colorsArray.length; i += 3) {
@@ -164,15 +166,13 @@ const celebrateInPlace = () => {
     
     
     setTimeout(() => {
-        // Hide elements
         buttonContainer.style.display = 'none';
         finalMessage.style.display = 'none'; 
         
-        // --- NEW BOX DISPLAY LOGIC ---
         coupleNameBox.style.display = 'block';
         
-        // 💖 FIX: Split Name into two lines to ensure horizontal fit 💖
-        heading.innerHTML = "Aamir & <br> Minahil Sahiba";
+        // 💖 FIX: Show only "Lovely Minahil Sahiba" in H2 for the final page 💖
+        heading.innerHTML = "Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
 
@@ -187,7 +187,6 @@ const celebrateInPlace = () => {
             <span class="heart-emoji">💖</span> Absolutely loved this moment. Congrats, sweetheart! 
             <br> Forever starts now. <span class="heart-emoji">🥂💍</span>
         `;
-        // 💖 FIX: Adjusted size to ensure it fits with the 2-line H2
         finalCongrats.style.fontSize = '2em'; 
         finalCongrats.style.marginTop = '20px';
         finalCongrats.style.color = 'white';
