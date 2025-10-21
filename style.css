@@ -1,15 +1,18 @@
 :root {
-    /* Deep, Classy Love Colors */
-    --primary-color: #800000; /* Deep Maroon */
-    --secondary-color: #A52A2A; /* Brownish Red */
-    --text-color: #f0f0f0; 
+    /* 💖 DEEPER, MORE LUXURIOUS COLORS 💖 */
+    --primary-color: #990000; /* Darker Maroon for depth */
+    --secondary-color: #B54A4A; /* Slightly lighter Brownish Red */
+    --text-color: #ffffff; /* Pure white text for better contrast */
     --bg-color: #1a1a1a; 
-    --highlight-red: #ff0000; /* Bright Red for final text/hearts */
+    --highlight-red: #ff3333; /* Vibrant red for accent/glow */
 }
 
 /* --- Screen Fix and Mobile Optimization (Perfect Alignment) --- */
 html, body {
     height: 100%; 
+    /* 💖 LOVELY FONT SMOOTHING 💖 */
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -22,7 +25,8 @@ body {
     color: var(--text-color);
     display: flex; 
     justify-content: center;
-    align-items: center; /* Body mein content vertical center */
+    align-items: center; 
+    /* ❌ FIX: cursor: none; REMOVED HERE. Default cursor will now show. */
 }
 
 #love-scene {
@@ -32,7 +36,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    box-shadow: inset 0 0 100px rgba(128, 0, 0, 0.5); 
+    /* 💖 DEEPER SHADOW */
+    box-shadow: inset 0 0 150px rgba(100, 0, 0, 0.7); 
 }
 
 /* Central message box */
@@ -42,21 +47,24 @@ body {
     text-align: center;
     padding: 40px 60px;
     border-radius: 15px;
-    box-shadow: 0 0 30px rgba(128, 0, 0, 0.7);
-    animation: fadeIn 3s ease-out;
+    /* 💖 DEEP SHADOW & GLOW */
+    box-shadow: 0 0 70px rgba(255, 51, 51, 0.4), 0 0 20px rgba(255, 255, 255, 0.1); 
     max-width: 90%;
     
     /* 💖 LOVELY EFFECT: Subtle 3D Tilt */
     transform: perspective(1000px) rotateX(5deg);
     transition: transform 0.5s ease-out, box-shadow 1s ease;
     
+    /* 💖 NEW: Cinematic Entrance Animation on Load 💖 */
+    animation: fadeIn 3s ease-out, liftUp 4s ease-out;
+    animation-delay: 0s, 0.5s; /* Fade in first, then lift up */
+    
     /* 3D GLOSSY EFFECT FIX */
     background: 
-        radial-gradient(circle at center, rgba(165, 42, 42, 0.2) 0%, rgba(26, 26, 26, 0.9) 100%), 
-        rgba(26, 26, 26, 0.9);
-    border: 1px solid rgba(165, 42, 42, 0.5); 
+        radial-gradient(circle at center, rgba(165, 42, 42, 0.3) 0%, rgba(26, 26, 26, 0.98) 100%), 
+        rgba(26, 26, 26, 0.98);
+    border: 1px solid rgba(165, 42, 42, 0.6); 
     
-    /* New container for names */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,20 +75,20 @@ body {
 h2 {
     font-size: 5em; 
     color: var(--primary-color);
-    text-shadow: 0 0 10px var(--secondary-color);
+    /* 💖 ENHANCED SHADOW */
+    text-shadow: 0 0 20px var(--highlight-red), 0 0 8px var(--secondary-color);
     letter-spacing: 5px;
     margin-top: 0; 
     margin-bottom: 0.2em;
     white-space: nowrap; 
     transition: all 1s ease-out;
-    /* ALIGNMENT FIX */
     visibility: hidden; 
     height: 1.2em; 
 }
 
 /* Initial Paragraph & Proposal Text */
 p {
-    font-size: 1.5em;
+    font-size: 1.6em; /* Slightly larger */
     font-style: italic;
     color: var(--text-color);
     margin-top: 5px; 
@@ -101,7 +109,7 @@ p {
     font-weight: bold;
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     margin-top: 30px; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7); /* Deeper Shadow */
     animation: pulse 2s infinite; 
 }
 
@@ -113,37 +121,42 @@ p {
 }
 .proposal-btn:hover {
     background-color: var(--primary-color);
-    transform: scale(1.05);
+    transform: scale(1.08); /* Slightly more pronounced hover */
+    box-shadow: 0 0 30px var(--highlight-red); /* Stronger hover glow */
 }
 
-/* --- Final Celebration Styles --- */
+/* 💖 FINAL TEXT GLOW UP */
 .celebration-text {
-    /* LOVELY ANIMATION FOR NAMES */
     color: var(--highlight-red);
-    text-shadow: 0 0 10px var(--text-color);
+    text-shadow: 0 0 15px #ffffff, 0 0 5px var(--highlight-red);
     animation: textGlow 1.5s infinite alternate, scaleText 2s infinite alternate;
 }
 
-/* 💖 LOVELY EFFECT: Animation for the Congrats P tag */
-#final-congrats {
-    animation: shimmer 5s infinite;
-}
-
-/* Added animation to make H2 look lovely and dynamic */
-@keyframes scaleText {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.03); }
-}
-
-.heart-emoji {
-    font-size: 1.2em;
-    display: inline-block;
+/* --- Cursor Heart Styles (for cursor-effect.js) --- */
+.heart-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Crucial: allows clicks through the heart */
+    font-size: 20px;
+    color: var(--highlight-red);
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out, opacity 0.3s ease-out;
+    z-index: 9999; /* Always on top */
 }
 
 /* --- Keyframes --- */
 @keyframes fadeIn {
-    from { opacity: 0; }
+    from { opacity: 0.2; }
     to { opacity: 1; }
+}
+
+/* 💖 NEW KEYFRAME: Subtle lift-up effect on initial load (Cinematic Entrance) */
+@keyframes liftUp {
+    0% { transform: perspective(1000px) rotateX(5deg) translateY(50px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: perspective(1000px) rotateX(5deg) translateY(0); }
 }
 
 @keyframes pulse {
@@ -154,52 +167,41 @@ p {
 
 @keyframes textGlow {
     0% { text-shadow: 0 0 5px var(--highlight-red); }
-    100% { text-shadow: 0 0 20px var(--highlight-red), 0 0 5px #fff; }
+    100% { text-shadow: 0 0 25px var(--highlight-red), 0 0 10px #fff; }
 }
 
-/* 💖 NEW KEYFRAME: Shimmer effect for congratulations text */
+/* 💖 Shimmer effect (Unchanged but Lovely) */
 @keyframes shimmer {
     0% { opacity: 0.95; }
     50% { opacity: 1; }
     100% { opacity: 0.95; }
 }
 
-/* --- Mobile / Small Screen Responsiveness Fix (Final Alignment & Background Fix) --- */
+/* ... (Mobile Media Query remains the same for responsiveness) ... */
+
 @media (max-width: 768px) {
+    /* 💖 FIX: Ensure default cursor is visible on touch devices/mobile */
+    body {
+        cursor: default; 
+    }
     .love-message {
-        /* Fix for Background: Max width kam ki taaki background zyada dikhe */
-        padding: 30px 15px; /* Padding kam ki */
-        max-width: 80%; /* Width kam ki */
-        /* Remove 3D tilt on very small screens to save space */
+        padding: 30px 15px; 
+        max-width: 80%; 
         transform: none; 
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        /* Remove 3D tilt and LiftUp animation on mobile for performance/space */
+        animation: fadeIn 3s ease-out; 
     }
-    
-    /* Couple Name Box Spacing */
-    #couple-name-box {
-        margin-bottom: 25px; /* Separation from the main message area */
-    }
-    
-    /* H2 (Names) fix for celebration page */
     h2 {
         font-size: 1.8em; 
-        height: auto; 
-        letter-spacing: 1px;
-        white-space: normal; 
-        margin-bottom: 5px; 
     }
-
-    /* Celebration text spacing fix (P tag) */
     p {
         font-size: 1.2em;
-        margin-top: 20px;
-        margin-bottom: 20px;
     }
-
     .button-container {
         flex-direction: column;
         gap: 10px;
     }
-
     .proposal-btn {
         width: 100%;
     }

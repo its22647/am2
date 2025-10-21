@@ -98,9 +98,9 @@ surpriseButton.addEventListener('click', () => {
     
     surpriseButton.disabled = true; 
     
-    // 💖 LOVELY EFFECT: Pulse the Message Box before transition 💖
-    loveMessageContainer.style.transition = 'transform 0.5s ease-out';
-    loveMessageContainer.style.transform = 'scale(1.05)'; // Zoom In
+    // Set transition property here for the heartbeat to work smoothly
+    loveMessageContainer.style.transition = 'transform 0.5s ease-out, box-shadow 1s ease'; 
+    loveMessageContainer.style.transform = 'scale(1.05) perspective(1000px) rotateX(5deg)'; // Zoom In + Maintain Tilt
     
     // 1. Initial content fade out
     surpriseButton.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -112,7 +112,7 @@ surpriseButton.addEventListener('click', () => {
 
     // Reset zoom after a moment
     setTimeout(() => {
-        loveMessageContainer.style.transform = 'scale(1)'; // Zoom Out (return to normal)
+        loveMessageContainer.style.transform = 'scale(1) perspective(1000px) rotateX(5deg)'; // Zoom Out (return to normal)
         
         // 2. Reveal the Proposal Text and Choices
         setTimeout(() => {
@@ -158,10 +158,21 @@ const celebrateInPlace = () => {
     finalMessage.style.opacity = '0';
     buttonContainer.style.opacity = '0';
     
-    // Increase 3D animation for celebration!
-    rotationSpeed = 0.005; // 5x faster
-    pulseMagnitude = 0.15; // 3x bigger pulse
+    // 💖 ENHANCED CELEBRATION EFFECT 💖
+    rotationSpeed = 0.005; // Faster
+    pulseMagnitude = 0.15; // Bigger pulse
     material.size = 0.1; // Bigger particles
+    
+    // Change particle colors to bright red (celebration glow)
+    const redColor = new THREE.Color(0xff0000);
+    const colorsArray = geometry.attributes.color.array;
+    for (let i = 0; i < colorsArray.length; i += 3) {
+        colorsArray[i] = redColor.r;
+        colorsArray[i + 1] = redColor.g;
+        colorsArray[i + 2] = redColor.b;
+    }
+    geometry.attributes.color.needsUpdate = true; // Apply color change
+    
     
     setTimeout(() => {
         // Hide elements
