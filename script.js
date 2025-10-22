@@ -113,19 +113,19 @@ surpriseButton.addEventListener('click', () => {
             surpriseButton.style.display = 'none'; 
             initialMessage.style.display = 'none'; 
             
-            // Proposal message structure
+            // 💖 UPDATED TEXT FOR PAGE 2 (Adjusted for better fit) 💖
             finalMessage.innerHTML = `
-                <span style="font-size: 0.9em; display: block; margin-bottom: 20px; font-style: italic;">
-                    I knew the moment I saw you: you are my only FOREVER.
+                <span style="font-size: 0.9em; display: block; margin-bottom: 15px; font-style: italic;">
+                    From the moment I saw you, I felt something different.
                 </span>
-                <span style="font-size: 2.5em; font-weight: 900; color: #ff3333; display: block;">
+                <span style="font-size: 2.2em; font-weight: 900; color: #ff3333; display: block;">
                     MINAHIL SAHIBA
                 </span>
-                <span class="animated-like-you" style="font-size: 1.8em; margin-top: 10px;">
-                    I Like You!
+                <span class="animated-like-you" style="font-size: 1.6em; margin-top: 10px;">
+                    You truly inspire me, <br>and I admire you, a lot. 🌸
                 </span>
-                <span style="font-size: 1.5em; display: block; margin-top: 10px;">
-                    Can we be us, forever? ❤️💍
+                <span style="font-size: 1.4em; display: block; margin-top: 15px;">
+                    Can we stay connected… as friends? 😊
                 </span>
             `;
             finalMessage.style.color = 'white'; 
@@ -172,7 +172,7 @@ const celebrateInPlace = () => {
         
         coupleNameBox.style.display = 'block';
         
-        // 💖 FIXED: Show "Aamir & Minahil Sahiba" on the final page (split for fit) 💖
+        // 💖 FINAL PAGE: Show "Aamir & Minahil Sahiba" (split for fit) 💖
         heading.innerHTML = "Aamir & <br> Minahil Sahiba";
         heading.style.fontSize = '4em'; 
         heading.style.transition = 'opacity 2s ease, font-size 1s ease';
@@ -182,11 +182,11 @@ const celebrateInPlace = () => {
         
         heading.classList.add('celebration-text'); 
 
-        // New celebratory message
+        // 💖 UPDATED CONGRATS MESSAGE FOR PAGE 3 💖
         const finalCongrats = document.createElement('p');
         finalCongrats.innerHTML = `
-            <span class="heart-emoji">💖</span> Absolutely loved this moment. Congrats, sweetheart! 
-            <br> Forever starts now. <span class="heart-emoji">🥂💍</span>
+            <span class="heart-emoji">💖</span> Grateful for this beautiful connection.
+            <br> Some people just make life brighter. ✨
         `;
         finalCongrats.style.fontSize = '2em'; 
         finalCongrats.style.marginTop = '20px';

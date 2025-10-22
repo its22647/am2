@@ -208,7 +208,8 @@ p {
     }
     
     p {
-        font-size: 1.1em; 
+        /* 💖 FIX: Mobile screens par layout theek karne ke liye font size kam kiya 💖 */
+        font-size: 1em; 
         margin-top: 15px;
         margin-bottom: 15px;
     }
